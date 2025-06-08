@@ -2,27 +2,27 @@
 #ifndef _UAPI_LINUX_ELF_H
 #define _UAPI_LINUX_ELF_H
 
-#include <linux/types.h>
-#include <linux/elf-em.h>
+#include <inttypes.h>
+
 
 /* 32-bit ELF base types. */
-typedef __u32	Elf32_Addr;
-typedef __u16	Elf32_Half;
-typedef __u32	Elf32_Off;
-typedef __s32	Elf32_Sword;
-typedef __u32	Elf32_Word;
-typedef __u16	Elf32_Versym;
+typedef uint32_t	Elf32_Addr;
+typedef uint16_t	Elf32_Half;
+typedef uint32_t	Elf32_Off;
+typedef int32_t	  Elf32_Sword;
+typedef uint32_t	Elf32_Word;
+typedef uint16_t	Elf32_Versym;
 
 /* 64-bit ELF base types. */
-typedef __u64	Elf64_Addr;
-typedef __u16	Elf64_Half;
-typedef __s16	Elf64_SHalf;
-typedef __u64	Elf64_Off;
-typedef __s32	Elf64_Sword;
-typedef __u32	Elf64_Word;
-typedef __u64	Elf64_Xword;
-typedef __s64	Elf64_Sxword;
-typedef __u16	Elf64_Versym;
+typedef uint64_t	Elf64_Addr;
+typedef uint16_t	Elf64_Half;
+typedef int16_t	  Elf64_SHalf;
+typedef uint64_t	Elf64_Off;
+typedef int32_t	  Elf64_Sword;
+typedef uint32_t	Elf64_Word;
+typedef uint64_t	Elf64_Xword;
+typedef int64_t	  Elf64_Sxword;
+typedef uint16_t	Elf64_Versym;
 
 /* These constants are for the segment types stored in the image headers */
 #define PT_NULL    0
