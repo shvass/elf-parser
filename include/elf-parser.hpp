@@ -23,6 +23,9 @@ extern "C"{
     #include <elf.h>
 }
 
+#include <string>
+#include <unordered_map>
+
 
 class executable
 {
@@ -35,8 +38,21 @@ public:
     void operator()();
 
     Elf32_Ehdr* header;
+
     uint8_t* raw_data = 0;
     int bin_size = -1;
+
+    static std::unordered_map<std::string, void*> symbol_table;
+
+private:
+
+    Elf32_Shdr* shdr;
+    Elf32_Phdr* phdr;
+    char* elf_str_addr;
+    
+    
+    void parse_section_header();
+    void print_string_table(char* ptr, size_t size);
 };
 
 
