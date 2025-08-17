@@ -1,2 +1,3 @@
-test/test-app/test-app.hh
-test/test-app/test-app.log
+test/**/*.hh
+test/**/*.log
+test/**/*.fo

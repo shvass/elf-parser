@@ -39,7 +39,7 @@ executable::executable(uint8_t* dram_bin, int length)
 {
     // null checks
     if(!dram_bin || length <= 0) {
-        ESP_LOGE(TAG, "received invalid execuatble binary");
+        ESP_LOGE(TAG, "received invalid executable binary");
         return;
     }
 
@@ -52,10 +52,11 @@ executable::executable(uint8_t* dram_bin, int length)
     // copy section header
     shdr = new Elf32_Shdr[header->e_shnum];
     memcpy(shdr, dram_bin + header->e_shoff, 
-        sizeof(Elf32_Shdr) * header->e_shnum);
+           sizeof(Elf32_Shdr) * header->e_shnum);
         
     ESP_LOGD(TAG, "section: found %d header", header->e_shnum);
-    ESP_LOG_BUFFER_HEX_LEVEL(TAG, shdr, sizeof(Elf32_Shdr) * header->e_shnum, ESP_LOG_VERBOSE);
+    ESP_LOG_BUFFER_HEX_LEVEL(TAG, shdr, sizeof(Elf32_Shdr) * header->e_shnum, 
+                             ESP_LOG_VERBOSE);
 
     // find elf string section and copy string array
     Elf32_Word str_arr_size = shdr[header->e_shstrndx].sh_size;

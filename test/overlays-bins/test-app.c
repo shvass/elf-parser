@@ -5,7 +5,6 @@
 
 FROS_IMPORT void external_binding();
 
-
 FROS_EXPORT void export_binding(){
     external_binding();
 };

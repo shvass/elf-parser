@@ -34,17 +34,19 @@ LDFLAGS += -fno-plt            # disable plt
 all: test-app.hh test-app.log
 
 
+%.fo : %.c
+	@echo "compiling ${<} to object ${@}"
+	$(CC) $(CFLAGS) $(LDFLAGS) $< -o $@
+
 # read info from objs
-%.log : %.out
+%.log : %.fo
 	readelf -a -S $^ >  $@
 	$(OBJDUMP) $^ -h -j .dynstr >> $@
 
 
-%.hh : %
+%.hh : %.fo
 	@echo "converting object ${%.o} to c array header ${%.hh}"
 	xxd -i $^ > $@
 
-
-
 clean:
-	rm *.o *.log *.hh
+	rm *.o *.log *.hh *.fo

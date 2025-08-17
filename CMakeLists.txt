@@ -3,6 +3,6 @@ idf_component_register(SRCS "elf-parser.cpp"
 
 
   
-execute_process(COMMAND make -C test-app all
-    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+execute_process(COMMAND make all
+    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/test/overlays-bins
 )
