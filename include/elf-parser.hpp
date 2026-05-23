@@ -27,14 +27,23 @@ extern "C"{
 #include <unordered_map>
 
 
+/**
+ * @brief executable class to load and execute elf objects
+ * manages the elf header, section header, program header and symbol table
+ * provides methods to print elf header info and string table.
+ */
 class executable
 {
 public:
 
+    /**
+     * @brief constructor to initialize the executable object with raw data and length
+     */
     executable(uint8_t* rawdata, int length);
 
     void printElfHeaderInfo();
 
+    // handover execution to entry_point of the elf object
     void operator()();
 
     Elf32_Ehdr* header;
@@ -42,6 +51,7 @@ public:
     uint8_t* raw_data = 0;
     int bin_size = -1;
 
+    // global symbol table to store the symbols and their corresponding addresses
     static std::unordered_map<std::string, void*> symbol_table;
 
 private:
